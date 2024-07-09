@@ -8,14 +8,14 @@ class SimpleDeroulanMenu(object):
     def __init__(self,fenetre,dimension=str("900x300")) -> None:
         self.fentre =fenetre
         self.dimension =dimension.split('x')
-        self.ruban =crfnt.FrameWidget(self.fentre,tailX=self.dimension[0],tailY=50).position()
+        self.ruban =crfnt.FrameWidget(self.fentre,tailX=self.fentre.winfo_screenwidth(),tailY=50).position()
         
         self.focus = self.fentre.bind("<Motion>",SimpleDeroulanMenu.one_focus)
         # self.on_click=self.fentre.bind('<>')
     def menu(self,rubrique=['Hom','Setting','A bout']):
         k=0
         for i in rubrique :
-            label =crfnt.Label(self.ruban,text=i,bg='#fff').position(x=100+k,y=self.POSITION_Y_LABEL_NAVE)
+            label =crfnt.Label(self.ruban,text=i).position(x=100+k,y=self.POSITION_Y_LABEL_NAVE)
             k+=100
     
     def submenu(self,event): 
@@ -27,3 +27,4 @@ class SimpleDeroulanMenu(object):
         if event.y>0 and event.y<30:
             if  event.x >100 and event.x <120 :
                 print(event.x)
+                
